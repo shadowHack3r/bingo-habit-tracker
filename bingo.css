@@ -5,10 +5,6 @@ body {
     color: #333;
     margin: 0;
     padding: 20px;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    min-height: 100vh;
 }
 
 h1 {
@@ -102,4 +98,12 @@ h1 {
         max-width: 320px;
         gap: 8px;
     }
+}
+
+.app{
+    display: flex;
+    flex-direction: colum;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
