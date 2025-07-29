@@ -16,15 +16,12 @@ h1 {
 .bingo-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    /* 5 tiles per row */
     gap: 12px;
-    /* space between tiles */
     max-width: 520px;
-    /* fits 5 tiles + gaps */
-    margin: 20px auto;
-    /* auto centers horizontally */
-    justify-items: center;
-    /* center tiles in each column */
+    margin: 20px auto; /* auto centers horizontally */
+    justify-items: center;/* center tiles in each column */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
 }
 
 .tile {
