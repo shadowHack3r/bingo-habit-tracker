@@ -43,7 +43,13 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script src="bingo.js"></script>
+<script src="bingo.js">
+    if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js")
+    .then(() => console.log("Service Worker Registered!"));
+}
+
+</script>
 </body>
 
 </html>
