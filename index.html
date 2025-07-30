@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Habit Tracker</title>
     <link rel="stylesheet" href="bingo.css">
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#E7EDE3">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body>
     <h1 id="tracker-title" contenteditable="true">✨ Bingo Habit Tracker ✨</h1>
+
+<div class="quote-box">
+    <p id="quote">Loading today's quote...</p>
+</div>
+
 
 <div class="bingo-grid">
     <div class="tile" contenteditable="true"></div>
@@ -41,15 +45,34 @@
     <div class="tile" contenteditable="true"></div>
 </div>
 
+<div class="note-box">
+    <textarea id="dailyNote" placeholder="Write your note for today..."></textarea>
+</div>
+
+<!-- Side Toolbar -->
+<div id="sidePanel" class="side-panel">
+    <button id="closePanel" class="close-btn">×</button>
+    <div class="toolbar-icons">
+        <button class="tool" id="themeToggle" title="Toggle Dark/Light Mode">
+            <i id="themeIcon" class="ri-moon-line"></i>
+        </button>
+        <button class="tool" title="FAQ">
+            <i class="ri-question-line"></i>
+        </button>
+        <button class="tool" title="About App">
+            <i class="ri-information-line"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Panel Open Button -->
+<button id="openPanel" class="open-panel"><i class="ri-menu-line"></i></button>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script src="bingo.js">
-    if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js")
-    .then(() => console.log("Service Worker Registered!"));
-}
-
-</script>
+<script src="bingo.js"></script>
+<div id="overlay"></div>
 </body>
 
 </html>
