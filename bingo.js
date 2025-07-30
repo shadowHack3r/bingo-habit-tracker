@@ -107,3 +107,130 @@ tiles.forEach(tile => {
 
 // === Initialize ===
 loadHabits();
+
+const quoteElement = document.getElementById("quote");
+
+async function fetchDailyQuote() {
+  const today = new Date().toDateString(); // example: "Thu Jul 30 2025"
+
+  // Check if we already saved today's quote
+  const savedQuote = localStorage.getItem("dailyQuote");
+  const savedDate = localStorage.getItem("quoteDate");
+
+  if (savedQuote && savedDate === today) {
+    // Show the saved quote for today
+    quoteElement.textContent = savedQuote;
+    return;
+  }
+
+  try {
+    // Fetch a random quote from API
+    const response = await fetch("https://api.quotable.io/random");
+    const data = await response.json();
+    const quote = data.content;
+
+    // Show it on the page
+    quoteElement.textContent = quote;
+
+    // Save for today
+    localStorage.setItem("dailyQuote", quote);
+    localStorage.setItem("quoteDate", today);
+
+  } catch (error) {
+    quoteElement.textContent = "Keep going, you're doing great 💜"; // fallback quote
+  }
+}
+
+// Load the daily quote when page opens
+fetchDailyQuote();
+
+
+const note = document.getElementById("dailyNote");
+
+// Load saved note
+note.value = localStorage.getItem("dailyNote") || "";
+
+// Save note whenever user types
+note.addEventListener("input", () => {
+  localStorage.setItem("dailyNote", note.value);
+});
+
+const sidePanel = document.getElementById("sidePanel");
+const openPanel = document.getElementById("openPanel");
+const closePanel = document.getElementById("closePanel");
+
+openPanel.addEventListener("click", () => {
+  sidePanel.style.width = "500px"; // Open width
+});
+
+closePanel.addEventListener("click", () => {
+  sidePanel.style.width = "0"; // Close
+});
+
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+// Load saved theme OR default to light mode
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+  // User had dark mode before
+  document.body.classList.add("dark-mode");
+  themeIcon.classList.replace("ri-sun-line", "ri-moon-line");
+} else {
+  // Default is light mode
+  document.body.classList.add("light-mode");
+  themeIcon.classList.replace("ri-moon-line", "ri-sun-line");
+}
+
+// Toggle on click
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  document.body.classList.toggle("dark-mode");
+
+  const isLight = document.body.classList.contains("light-mode");
+
+  if (isLight) {
+    themeIcon.classList.replace("ri-moon-line", "ri-sun-line");
+    localStorage.setItem("theme", "light");
+  } else {
+    themeIcon.classList.replace("ri-sun-line", "ri-moon-line");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+const sidePanle=
+document.getElementById("sidePanel");
+const openPanle=
+document.getElementById("openPanel");
+const closePanle=
+document.getElementById("closePanel");
+const overlay=
+document.getElementById("overlay");
+
+
+function openSidePanel() {
+  sidePanel.style.width = "80px"; 
+  sidePanel.classList.add("open");
+  overlay.classList.add("active");
+  
+  // Hide menu button using class
+  openPanel.classList.add("hidden");
+}
+
+function closeSidePanel() {
+  sidePanel.style.width = "0";
+  sidePanel.classList.remove("open");
+  overlay.classList.remove("active");
+
+  // Show menu button again
+  openPanel.classList.remove("hidden");
+}
+
+
+openPanel.addEventListener("click",
+   openSidePanel);
+closePanel.addEventListener("click",
+   closeSidePanel);
+
+overlay.addEventListenesr("click", closeSidePanel)
