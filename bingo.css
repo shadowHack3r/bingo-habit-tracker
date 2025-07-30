@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', 'Roboto', 'San Francisco', system-ui, sans-serif;
     text-align: center;
     background: #f8f6f1;
     color: #333;
@@ -7,21 +7,27 @@ body {
     padding: 20px;
 }
 
-h1 {
+h1,
+h2,
+h3{
     margin: 20px 0;
     color: black;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .bingo-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    /* 5 tiles per row */
     gap: 12px;
+    /* space between tiles */
     max-width: 520px;
-    margin: 20px auto; /* auto centers horizontally */
-    justify-items: center;/* center tiles in each column */
-    justify-content: center;  /* Center horizontally */
-    align-items: center;      /* Center vertically */
+    /* fits 5 tiles + gaps */
+    margin: 20px auto;
+    /* auto centers horizontally */
+    justify-items: center;
+    /* center tiles in each column */
 }
 
 .tile {
@@ -97,10 +103,228 @@ h1 {
     }
 }
 
-.app{
-    display: flex;
-    flex-direction: colum;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.quote-box {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* looks nice on dark mode */
 }
+
+.quote-box p {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.note-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.note-box textarea {
+    width: 90%;
+    max-width: 400px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: black;
+    /* change to black if light mode */
+}
+
+.note-box textarea:focus {
+    outline: 2px solid #6c63ff;
+}
+
+/* Left Side Panel */
+.side-panel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* changed to left */
+    background-color: #222;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.toolbar-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.tool:hover {
+    transform: scale(1.2);
+}
+
+/* Menu button */
+.open-panel {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    /* now opens from left */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    /* still at the top-right of panel */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+body.light-mode {
+    background: #f8f6f1;
+    color: black;
+}
+
+body.light-mode .side-panel{
+    background-color: #ddd;
+}
+
+body.light-mode .tool{
+    color: black;
+}
+body.dark-mode{
+    background-color: #111;
+    color: white;
+}
+
+body.dark-mode .side-panel{
+    background-color: #222;
+}
+
+body.dark-mode .tool{
+    color: white;
+}
+
+body.dark-mode h1{
+    color: white;
+}
+
+body.light-mode .note-box textarea{
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #222;
+}
+
+body.dark-mode .note-box textarea {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.dark-mode .open-panel {
+    color: white;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+
+/* Show overlay when side panel is open */
+#overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Smooth panel animation */
+.side-panel {
+    transition: width 0.3s ease;
+    z-index: 1000;
+}
+
+.side-panel.open~.open-panel{
+    display: none;
+}
+
+/* Menu (☰) & Close (×) buttons theme colors */
+.open-panel,
+.close-btn {
+    transition: color 0.3s;
+}
+
+body.light-mode .open-panel,
+body.light-mode .close-btn {
+    color: black;
+}
+
+body.dark-mode .open-panel,
+body.dark-mode .close-btn {
+    color: white;
+}
+
+/* Hide menu button when panel is open */
+.hidden {
+    display: none;
+}
+
+/* Base menu button styling */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.menu-btn span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: black; /* default for light mode */
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Dark mode color */
+body.dark-mode .menu-btn span {
+  background-color: white;
+}
+
