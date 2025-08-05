@@ -3,13 +3,13 @@ self.addEventListener("install", e => {
   e.waitUntil(
     caches.open("habit-tracker").then(cache => {
       return cache.addAll([
-        "./",
-        "./index.html",
-        "./bingo.css",
-        "./bingo.js",
-        "./manifest.json",
-        "./icon-192.png",
-        "./icon-512.png"
+        "/bingo-habit-tracker/",
+        "/bingo-habit-tracker/index.html",
+        "/bingo-habit-tracker/bingo.css",
+        "/bingo-habit-tracker/bingo.js",
+        "/bingo-habit-tracker/manifest.json",
+        "/bingo-habit-tracker/icon-192.png",
+        "/bingo-habit-tracker/icon-512.png"
       ]);
     })
   );
