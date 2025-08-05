@@ -233,7 +233,7 @@ openPanel.addEventListener("click",
 closePanel.addEventListener("click",
    closeSidePanel);
 
-overlay.addEventListenesr("click", closeSidePanel)
+overlay.addEventListener("click", closeSidePanel)
 
 // === Service Worker Registration ===
 if ("serviceWorker" in navigator) {
@@ -242,3 +242,4 @@ if ("serviceWorker" in navigator) {
     .then(reg => console.log("Service Worker registered!", reg))
     .catch(err => console.log("Service Worker registration failed:", err));
 }
+
