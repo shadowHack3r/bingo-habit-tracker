@@ -234,3 +234,11 @@ closePanel.addEventListener("click",
    closeSidePanel);
 
 overlay.addEventListenesr("click", closeSidePanel)
+
+// === Service Worker Registration ===
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/bingo-habit-tracker/sw.js")
+    .then(reg => console.log("Service Worker registered!", reg))
+    .catch(err => console.log("Service Worker registration failed:", err));
+}
